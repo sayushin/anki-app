@@ -27,6 +27,7 @@ return (
   <Flashcard
     question = {flashcards[currentIndex].question}
     answer = {flashcards[currentIndex].answer}
+    checkbox = {flashcards[currentIndex].checkbox}
     />
     <div className="flex space-x-4 mt-6">
         <button
@@ -42,8 +43,10 @@ return (
           Next
         </button>
       </div>
-      <Link href ="/add" className = "mt-12 px-4 py-2 bg-green-500 text-white rounded hover-bg-green-600">
+      <Link href ="/add"> 
+      <a className = "mt-12 px-4 py-2 bg-green-500 text-white rounded hover-bg-green-600">
       Add New Flashcard
+      </a>
       </Link>
     </div>
 )

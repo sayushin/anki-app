@@ -4,9 +4,10 @@ import {useState} from "react";
 type FlashcardProps = {
     question:string;
     answer:string;
+    checkbox:boolean;
 }
 
-const Flashcard = ({question, answer, checkbox}) => {
+const Flashcard: React.FC<FlashcardProps>  = ({question, answer, checkbox}) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleFlip = () => setIsFlipped(!isFlipped);
