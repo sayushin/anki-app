@@ -1,5 +1,5 @@
 "use client"
-import {useState} from "react";
+import {useState,useEffect} from "react";
 
 type FlashcardProps = {
     question:string;
@@ -11,6 +11,11 @@ const Flashcard: React.FC<FlashcardProps>  = ({question, answer, checkbox}) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleFlip = () => setIsFlipped(!isFlipped);
+
+    useEffect(() => {
+      // Reset the flip state when the question or answer changes
+      setIsFlipped(false);
+    }, [question, answer]);
 
     const [isMarked, setIsMarked] = useState(false);
 
