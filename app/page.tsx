@@ -1,12 +1,28 @@
 'use client'
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Flashcard from "../components/Flashcard";
 import Link from 'next/link';
-import flashcards from '@/data/placeholder-data';
+// import flashcards from '@/data/placeholder-data';
 
 const Home = () => {
+  interface FlashcardType {
+    question: string;
+    answer: string;
+    checkbox: boolean;
+  }
+  
+  const [flashcards, setFlashcards] = useState<FlashcardType[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('/api/getFlashcards');
+      const newFlashcards = await res.json();
+      setFlashcards(newFlashcards);
+    };
+    fetchData();
+  }, []);
 
 const handleNext = () =>{
   setCurrentIndex((prevIndex)=>
@@ -24,6 +40,8 @@ const handlePrev = () => {
 return (
   <div className = "flex flex-col items-center p-8 min-w-md">
     <h1 className = "text-3xl font-bold mb-8">Flashcards</h1>
+    {flashcards.length === 0 ? <p>Loading...</p> :(
+      <>
   <Flashcard
     question = {flashcards[currentIndex].question}
     answer = {flashcards[currentIndex].answer}
@@ -43,10 +61,10 @@ return (
           Next
         </button>
       </div>
-      <Link href ="/add"> 
-      <a className = "mt-12 px-4 py-2 bg-green-500 text-white rounded hover-bg-green-600">
-      Add New Flashcard
-      </a>
+     </>
+    )}
+      <Link href ="/add" className = "mt-12 px-4 py-2 bg-green-500 text-white rounded hover-bg-green-600">
+      Add New Flashcard 
       </Link>
     </div>
 )
