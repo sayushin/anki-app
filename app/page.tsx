@@ -39,7 +39,7 @@ const handlePrev = () => {
 
 return (
   <div className = "flex flex-col items-center p-8 min-w-md">
-    <h1 className = "text-3xl font-bold mb-8">Flashcards</h1>
+    <h1 className = "text-3xl font-bold mb-8 underline">Flashcards</h1>
     {flashcards.length === 0 ? <p>Loading...</p> :(
       <>
   <Flashcard
@@ -47,16 +47,16 @@ return (
     answer = {flashcards[currentIndex].answer}
     checkbox = {flashcards[currentIndex].checkbox}
     />
-    <div className="flex space-x-4 mt-6">
+    <div className="flex space-x-10 mt-6 fixed bottom-20">
         <button
           onClick={handlePrev}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="w-28 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
           Previous
         </button>
         <button
           onClick={handleNext}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="w-28 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
           Next
         </button>
